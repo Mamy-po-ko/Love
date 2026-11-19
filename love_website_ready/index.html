@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ดีกันนะ 💗</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Noto Sans Thai",sans-serif;color:#8d305b;min-height:100svh;background:#ffc4dd url('cat-background.png') center center/cover fixed no-repeat;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:linear-gradient(180deg,rgba(255,235,245,.18),rgba(255,218,236,.22));pointer-events:none}
+main{position:relative;min-height:100svh;display:flex;align-items:flex-start;justify-content:center;padding:7vh 16px 30px}
+.panel{width:min(94vw,460px);text-align:center;padding:25px 20px 24px;background:rgba(255,246,251,.82);backdrop-filter:blur(12px);border:2px solid #fff;border-radius:30px;box-shadow:0 14px 45px #b94d7b4d}
+h1{font-size:clamp(27px,7vw,38px);margin:4px 0 12px;color:#d83d83}p{font-size:17px;line-height:1.8;white-space:pre-line;margin:0 0 20px}.buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer;border:0;border-radius:30px;padding:12px 20px;font-weight:700;box-shadow:0 5px 15px #d77ca344;transition:transform .2s}
+button:active{transform:scale(.94)}.yes{background:#f35d9e;color:white}.no{background:white;color:#c24d83}
+
+
+
+.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:2}.petal{position:absolute;top:-40px;animation:fall linear infinite;opacity:.8;text-shadow:0 0 7px white}
+@keyframes fall{to{transform:translate3d(75px,110vh,0) rotate(540deg)}}
+#result{min-height:25px;margin-top:15px;font-weight:700;color:#c52d75}
+@media(max-width:600px){body{background-attachment:scroll;background-position:center center}main{padding-top:5vh}.panel{padding:20px 15px}}
+.music-area{margin-top:20px}.music-area button{background:#fff0f7;color:#b53d77;border:1px solid #ffc0d8}.music-area small{display:block;margin-top:8px;font-size:12px;color:#8e5473}#musicBox:not(:empty){aspect-ratio:16/9;margin-top:12px;border-radius:16px;overflow:hidden}#musicBox iframe{border:0}.panel{margin-top:3vh}body{background-position:center 54%} @media(max-width:600px){body{background-position:center center}.panel{background:rgba(255,246,251,.88)}} 
+</style></head><body>
+<div class="petals" id="petals"></div>
+<main><section class="panel"><h1 id="title">เค้าขอโทษนะ 🥺💗</h1><p id="message">เค้ารู้ว่าเค้าทำให้เธองอน
+เค้าขอโทษจริง ๆ นะ
+ให้โอกาสเค้าได้ง้ออีกครั้งได้มั้ย 💕</p>
+<div class="buttons"><button class="yes" id="yes">💕 ดีกันนะ</button><button class="no" id="no">😾 งอนต่อ</button></div>
+<div id="result" aria-live="polite"></div><div class="music-area"><button id="playMusic" type="button">🎵 เปิดเพลงของเรา</button><div id="musicBox"></div><small>แตะเพื่อเล่นเพลงจาก YouTube (ต้องเชื่อมต่ออินเทอร์เน็ต)</small></div></section></main>
+
+<script>
+const $=id=>document.getElementById(id);
+const config={success:'เย้! รักเธอที่สุดเลย 💖'};
+const videoId='wKzNKFsneXQ';
+const musicBox=document.getElementById('musicBox');
+document.getElementById('playMusic').addEventListener('click',()=>{
+  musicBox.innerHTML='<iframe title="เพลงของเรา" width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/'+videoId+'?autoplay=1&playsinline=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+  document.getElementById('playMusic').hidden=true;
+});
+$('yes').onclick=()=>{$('result').textContent=config.success;for(let i=0;i<35;i++)setTimeout(()=>burst(),i*55);};
+let noCount=0;$('no').onclick=()=>{$('result').textContent=['ง้ออีกนิดน้า 🥹','เค้าจะง้อจนกว่าจะหายงอน 💞','ขออีกโอกาสนึงนะ 🥺'][noCount++%3];$('no').style.transform=`translate(${(Math.random()-.5)*35}px,${(Math.random()-.5)*18}px)`};
+function burst(){const s=document.createElement('span');s.textContent=['💗','💖','💕','🌸'][Math.random()*4|0];s.style.cssText=`position:fixed;z-index:9;left:${Math.random()*100}vw;top:${Math.random()*100}vh;font-size:${20+Math.random()*30}px;pointer-events:none;transition:all 1.6s ease;`;document.body.append(s);requestAnimationFrame(()=>{s.style.transform='translateY(-100px) scale(1.8)';s.style.opacity='0'});setTimeout(()=>s.remove(),1700)}
+for(let i=0;i<26;i++){const s=document.createElement('span');s.className='petal';s.textContent=i%3?'🌸':'💗';s.style.cssText=`left:${Math.random()*100}%;font-size:${12+Math.random()*15}px;animation-duration:${7+Math.random()*9}s;animation-delay:${-Math.random()*16}s`; $('petals').append(s)}
+</script></body></html>
